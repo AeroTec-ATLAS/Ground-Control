@@ -32,6 +32,7 @@ Item {
 
     property real _rollAngle:   vehicle ? vehicle.roll.rawValue  : 0
     property real _pitchAngle:  vehicle ? vehicle.pitch.rawValue : 0
+    // property real airspeed:  vehicle ? vehicle.airspeed.rawValue : 0
 
     width:  size
     height: size
@@ -49,6 +50,9 @@ Item {
             rollAngle:          _rollAngle
             pitchAngle:         _pitchAngle
             anchors.fill:       parent
+
+
+
         }
         //----------------------------------------------------
         //-- Pointer
@@ -75,6 +79,7 @@ Item {
                 angle:          -_rollAngle
             }
         }
+
         //----------------------------------------------------
         //-- Pitch
         QGCPitchIndicator {
@@ -134,4 +139,78 @@ Item {
         property string _headingString2: _headingString.length === 1 ? "0" + _headingString : _headingString
         property string _headingString3: _headingString2.length === 2 ? "0" + _headingString2 : _headingString2
     }
+    Text {
+        text:  "ola" + _rollAngle
+        font.family: "Helvetica"
+        font.pointSize: 24
+        color: "black"
+    }
+    Grid{
+        columns: 3
+        rows: 2
+        anchors.top: parent.bottom
+        Rectangle { color: "red"
+            width: 50
+            height: 50
+            Text {
+                text:  _rollAngle
+                font.family: "Helvetica"
+                font.pointSize: 12
+                color: "black"}
+        }
+
+        Rectangle { color: "green"
+            width: 50
+            height: 50
+            Text {
+                text:  _airspeed
+                font.family: "Helvetica"
+                font.pointSize: 12
+                color: "black"}
+        }
+
+        Rectangle { color: "yellow"
+            width: 50
+            height: 50
+            Text {
+                text:  _rollAngle
+                font.family: "Helvetica"
+                font.pointSize: 12
+                color: "black"}
+        }
+
+        Rectangle { color: "grey"
+            width: 50
+            height: 50
+            Text {
+                text:  _pitchAngle
+                font.family: "Helvetica"
+                font.pointSize: 12
+                color: "black"}
+        }
+
+        Rectangle { color: "orange"
+            width: 50
+            height: 50
+            Text {
+                text:  _airspeed
+                font.family: "Helvetica"
+                font.pointSize: 12
+                color: "black"}
+        }
+
+        Rectangle { color: "blue"
+            width: 50
+            height: 50
+            Text {
+                text:  _pitchAngle
+                font.family: "Helvetica"
+                font.pointSize: 12
+                color: "black"}
+        }
+
+
+    }
 }
+
+
