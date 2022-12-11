@@ -25,7 +25,7 @@ import QtQuick.Controls 1.2
 ColumnLayout {
     id:         root
     spacing:    ScreenTools.defaultFontPixelHeight /4
-    anchors.right:        parent.left
+    
 
     property bool showPitch:    true
     property var  vehicle:      null
@@ -45,7 +45,87 @@ ColumnLayout {
 
     QGCPalette { id: qgcPal }
 
+    Rectangle {
+        id:                 visualInstrument
+        height:             _outerRadius *4*Screen.devicePixelRatio
+        width:              height
 
+
+        radius:             height/4
+        color:              qgcPal.window
+
+        //Propriedades para arrrastar
+        property bool   allowDragging:  true
+        signal          resetRequested()
+        property real   maximumWidth: _outerRadius*6*Screen.devicePixelRatio
+        property real   minimumWidth: _outerRadius*2*Screen.devicePixelRatio
+
+
+        //Funções que atuam sobre o quadrado maior onde está inserido o horizonte artificial
+        MouseArea {
+            property double factor: 25
+            enabled:            visualInstrument.allowDragging
+            cursorShape:        Qt.OpenHandCursor
+            anchors.fill:       parent
+            drag.target:        parent
+            drag.axis:          Drag.XAndYAxis
+
+            //Scuffed limites
+            drag.minimumX:      (-Screen.width+visualInstrument.width)*Screen.devicePixelRatio
+            drag.minimumY:      0
+            drag.maximumX:      0
+            drag.maximumY:      (Screen.height-(visualInstrument.height)*1.5)*Screen.devicePixelRatio
+            drag.filterChildren: true
+
+            onPressed: {
+                visualInstrument.anchors.left  = undefined
+                visualInstrument.anchors.right = undefined
+            }
+
+            //reiniciar posição para canto superior direito com o tamanho original
+            onDoubleClicked: {
+                visualInstrument.resetRequested();
+                visualInstrument.x=0;
+                visualInstrument.y=0;
+                visualInstrument.height=_outerRadius *4*Screen.devicePixelRatio
+                visualInstrument.width=visualInstrument.height
+            }
+
+            //Zoom com o rato
+            onWheel:
+            {
+            var zoomFactor = _outerRadius/4;
+
+            if(wheel.angleDelta.y > 0){
+
+                if (visualInstrument.height<visualInstrument.maximumWidth){
+                    visualInstrument.height+=zoomFactor
+                    visualInstrument.width=visualInstrument.height
+                    
+
+                }
+              }
+            else if (wheel.angleDelta.y<0)
+                if(visualInstrument.height>visualInstrument.minimumWidth){
+                    visualInstrument.height += -zoomFactor
+                    visualInstrument.width =visualInstrument.height
+
+
+                }
+            }
+
+        }
+
+        QGCAttitudeWidget {
+            id:                     attitude
+
+            anchors.horizontalCenter:   parent.horizontalCenter
+            anchors.topMargin:          _spacing
+            anchors.top:                parent.top
+            size:                       visualInstrument.height
+            vehicle:                    globals.activeVehicle
+            anchors.verticalCenter:     parent.verticalCenter
+        }
 
     Rectangle {
         id:                 visualInstrument
@@ -58,17 +138,28 @@ ColumnLayout {
         radius:             _outerRadius
         color:              qgcPal.window
 
+    Rectangle {
+        id:                 visualInstrument
+        height:             _outerRadius *4*Screen.devicePixelRatio
+        width:              height
+
+        /*anchors.left:        parent.left
+        anchors.bottom:     parent.BottomLeft
+
+        Layout.fillWidth:   true
+        */
+
+        radius:             height/4
+        color:              qgcPal.window
+
         //Propriedades para arrrastar
         property bool   allowDragging:  true
-        property alias  tForm:          tform
         signal          resetRequested()
+        property real   maximumWidth: _outerRadius*6*Screen.devicePixelRatio
+        property real   minimumWidth: _outerRadius*2*Screen.devicePixelRatio
 
 
-        ////This should make it translate -MB
-        transform: Scale {
-            id: tform
-        }
-
+        //Funções que atuam sobre o quadrado maior onde está inserido o horizonte artificial
         MouseArea {
             property double factor: 25
             enabled:            visualInstrument.allowDragging
@@ -78,10 +169,10 @@ ColumnLayout {
             drag.axis:          Drag.XAndYAxis
 
             //Scuffed limites
-            drag.minimumX:      MainRootWindow.minimumWidth
+            drag.minimumX:      (-Screen.width+visualInstrument.width)*Screen.devicePixelRatio
             drag.minimumY:      0
             drag.maximumX:      0
-            drag.maximumY:      mainWindow.height
+            drag.maximumY:      (Screen.height-(visualInstrument.height)*1.5)*Screen.devicePixelRatio
             drag.filterChildren: true
 
             onPressed: {
@@ -89,13 +180,37 @@ ColumnLayout {
                 visualInstrument.anchors.right = undefined
             }
 
-            //reiniciar posição para canto superior direito
+            //reiniciar posição para canto superior direito com o tamanho original
             onDoubleClicked: {
                 visualInstrument.resetRequested();
                 visualInstrument.x=0;
                 visualInstrument.y=0;
+                visualInstrument.height=_outerRadius *4*Screen.devicePixelRatio
+                visualInstrument.width=visualInstrument.height
             }
 
+            //Zoom com o rato
+            onWheel:
+            {
+            var zoomFactor = _outerRadius/4;
+
+            if(wheel.angleDelta.y > 0){
+
+                if (visualInstrument.height<visualInstrument.maximumWidth){
+                    visualInstrument.height+=zoomFactor
+                    visualInstrument.width=visualInstrument.height
+                    
+
+                }
+              }
+            else if (wheel.angleDelta.y<0)
+                if(visualInstrument.height>visualInstrument.minimumWidth){
+                    visualInstrument.height += -zoomFactor
+                    visualInstrument.width =visualInstrument.height
+
+
+                }
+            }
 
         }
 
@@ -105,9 +220,9 @@ ColumnLayout {
             anchors.horizontalCenter:   parent.horizontalCenter
             anchors.topMargin:          _spacing
             anchors.top:                parent.top
-            size:                   _innerRadius * 4
-            vehicle:                globals.activeVehicle
-            anchors.verticalCenter: parent.verticalCenter
+            size:                       visualInstrument.height
+            vehicle:                    globals.activeVehicle
+            anchors.verticalCenter:     parent.verticalCenter
         }
 
         QGCCompassWidget {
