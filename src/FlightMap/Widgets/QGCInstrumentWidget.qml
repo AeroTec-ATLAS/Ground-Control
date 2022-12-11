@@ -11,6 +11,8 @@ import QtQuick          2.3
 import QtQuick.Layouts  1.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects   1.0
+import QtQuick.Window       2.0
+
 
 import QGroundControl               1.0
 import QGroundControl.Controls      1.0
@@ -102,7 +104,10 @@ ColumnLayout {
                     visualInstrument.height+=zoomFactor
                     visualInstrument.width=visualInstrument.height
                     
+                    drag.minimumX+=     zoomFactor/8*Screen.devicePixelRatio
 
+                    drag.maximumX-=     zoomFactor/1.5*Screen.devicePixelRatio
+                    drag.maximumY-=     zoomFactor*Screen.devicePixelRatio
                 }
               }
             else if (wheel.angleDelta.y<0)
@@ -110,6 +115,10 @@ ColumnLayout {
                     visualInstrument.height += -zoomFactor
                     visualInstrument.width =visualInstrument.height
 
+                    drag.minimumX+=     zoomFactor/16*Screen.devicePixelRatio
+
+                    drag.maximumX+=     zoomFactor*Screen.devicePixelRatio
+                    drag.maximumY+=     zoomFactor*Screen.devicePixelRatio
 
                 }
             }
