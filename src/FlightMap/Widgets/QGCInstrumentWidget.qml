@@ -202,7 +202,7 @@ ColumnLayout {
         spacing: 5
         Layout.leftMargin: -200
 
-flg t
+
     }
 
 
