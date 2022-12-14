@@ -60,9 +60,11 @@ ColumnLayout {
         id:                 visualInstrument
         height:             _innerRadius * 11
         width:              _innerRadius * 5
+        Layout.leftMargin:  -100
+        Layout.rightMargin: 27
 
-        anchors.left:        parent.left
-        anchors.bottom:     parent.BottomLeft
+        // anchors.left:        parent.left
+        // anchors.bottom:     parent.BottomLeft
 
 
         // Layout.fillWidth:   true
@@ -117,7 +119,8 @@ ColumnLayout {
             anchors.horizontalCenter:   parent.horizontalCenter
             anchors.topMargin:          _spacing
             anchors.top:                parent.top
-            Layout.leftMargin:          300
+            Layout.leftMargin:          500
+
             size:                   _innerRadius * 11
             vehicle:                globals.activeVehicle
             anchors.verticalCenter: parent.verticalCenter
@@ -146,12 +149,14 @@ ColumnLayout {
 
     Rectangle{
         id:                 altitude_rectangle
-        height:             visualInstrument.height
+        height:             visualInstrument.height - 10
         width:              height/4
-        radius:             _outerRadius
+        // radius:             _outerRadius
         color:              "black"
-        Layout.leftMargin:  -240
-        Layout.topMargin:   -450
+        Layout.leftMargin:  -336
+        Layout.topMargin:   -465
+        //anchors.top:     attitude.top
+        //anchors.right:  attitude.left
 
         Text {
             text: _airspeed
@@ -169,9 +174,9 @@ ColumnLayout {
         id:                 speed_rectangle
         height:             altitude_rectangle.height
         width:              height/4
-        Layout.leftMargin:  300
-        Layout.topMargin:   -500
-        radius:             _outerRadius
+        Layout.leftMargin:  233
+        Layout.topMargin:   -475
+        // radius:             _outerRadius
         color:              "black"
         visible:            true
         Text {
@@ -183,9 +188,11 @@ ColumnLayout {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
+
     }
 
     Grid{
+
         id:grid
         columns: 3
         rows: 3
@@ -193,17 +200,17 @@ ColumnLayout {
         Rectangle{color:"black";width:180;height:80;Text{text: _altitude;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
         Rectangle{color:"black";width:180;height:80;Text{text: _pitchAngle;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
         Rectangle{color:"black";width:180;height:80;Text{text: _rollAngle;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _throttlePct;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+        Rectangle{color:"black";width:180;height:80;Text{text: _rollAngle;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
         Rectangle{color:"black";width:180;height:80;Text{text: _flightDistance;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
         Rectangle{color:"black";width:180;height:80;Text{text: _altitudeAMSL;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
         Rectangle{color:"black";width:180;height:80;Text{text: _groundSpeed;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
         Rectangle{color:"black";width:180;height:80;Text{text: _yawRate;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
 
         spacing: 5
-        Layout.leftMargin: -200
-
+        Layout.leftMargin: -270
 
     }
+
 
 
     TerrainProgress {
