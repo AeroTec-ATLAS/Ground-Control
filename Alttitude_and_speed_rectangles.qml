@@ -24,13 +24,14 @@ Item {
 
     Rectangle{
         id:                 altitude_rectangle
-        height:             visualInstrument.height - 10
+        height:             visualInstrument.height 
         width:              height/4
         color:              "black"
+        radius:             width/4
         Text {
             text: Math.round(_altitude)+ " m"
             font.family: "Helvetica"
-            font.pointSize: 24
+            font.pointSize: parent.width/5  
             color: "white"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
