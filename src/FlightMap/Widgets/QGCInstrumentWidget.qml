@@ -25,11 +25,9 @@ import QGroundControl.Palette       1.0
 import QtQuick.Controls 1.2
 
 
-
 ColumnLayout {
     id:         root
     spacing:    ScreenTools.defaultFontPixelHeight /4
-    anchors.right:        parent.left
 
     property bool showPitch:    true
     property var  vehicle:      null
@@ -46,11 +44,6 @@ ColumnLayout {
     property real _groundSpeed:    vehicle ? vehicle.groundSpeed.rawValue : 0
     property real _yawRate:    vehicle ? vehicle.yawRate.rawValue : 0
 
-
-
-
-
-
     property real   _innerRadius:           (width - (_topBottomMargin * 3)) / 4
     property real   _outerRadius:           _innerRadius + _topBottomMargin
     property real   _spacing:               ScreenTools.defaultFontPixelHeight * 0.33
@@ -58,35 +51,23 @@ ColumnLayout {
 
     QGCPalette { id: qgcPal }
 
-
-
     Rectangle {
         id:                 visualInstrument
-        height:             _innerRadius * 11
-        width:              _innerRadius * 5
-        Layout.leftMargin:  -100
-        Layout.rightMargin: 27
+        height:             _outerRadius * 11*Screen.devicePixelRatio
+        width:              height
 
-        // anchors.left:        parent.left
-        // anchors.bottom:     parent.BottomLeft
-
-
-        // Layout.fillWidth:   true
-        radius:             _outerRadius
+        radius:             _outerRadius/4
         color:              qgcPal.window
 
 
         //Propriedades para arrrastar
         property bool   allowDragging:  true
-        property alias  tForm:          tform
         signal          resetRequested()
+        property real   maximumWidth: _outerRadius*22*Screen.devicePixelRatio
+        property real   minimumWidth: _outerRadius*4*Screen.devicePixelRatio
 
-
-        ////This should make it translate -MB
-        transform: Scale {
-            id: tform
-        }
-
+       
+        ////Funções para arrastar -MB
         MouseArea {
             property double factor: 25
             enabled:            visualInstrument.allowDragging
@@ -95,11 +76,12 @@ ColumnLayout {
             drag.target:        parent
             drag.axis:          Drag.XAndYAxis
 
-            //Scuffed limites
-            drag.minimumX:      MainRootWindow.minimumWidth
-            drag.minimumY:      0
-            drag.maximumX:      0
-            drag.maximumY:      mainWindow.height
+            //Scuffed limites não aplicados de momento pois as funçoes de limites de ecrã não são boas
+            //drag.minimumX:      -Screen.width
+            //drag.minimumY:      0
+            //drag.maximumX:      0
+            //drag.maximumY:      +Screen.height
+
             drag.filterChildren: true
 
             onPressed: {
@@ -114,7 +96,23 @@ ColumnLayout {
                 visualInstrument.y=0;
             }
 
+            //zoom com rato
+            onWheel:{
 
+            var zoomFactor = _outerRadius/4;
+
+            if(wheel.angleDelta.y > 0){
+                if (visualInstrument.height<visualInstrument.maximumWidth){
+                    visualInstrument.height+=zoomFactor
+                    visualInstrument.width=visualInstrument.height
+                }
+              }
+            else if (wheel.angleDelta.y<0)
+                if(visualInstrument.height>visualInstrument.minimumWidth){
+                    visualInstrument.height += -zoomFactor
+                    visualInstrument.width =visualInstrument.height
+                }
+            }
         }
 
         QGCAttitudeWidget {
@@ -123,66 +121,43 @@ ColumnLayout {
             anchors.horizontalCenter:   parent.horizontalCenter
             anchors.topMargin:          _spacing
             anchors.top:                parent.top
-            Layout.leftMargin:          500
+            anchors.left:               parent.left
 
-            size:                   _innerRadius * 11
+            size:                   visualInstrument.width
             vehicle:                globals.activeVehicle
             anchors.verticalCenter: parent.verticalCenter
         }
-        /*
-        QGCCompassWidget {
-            id:                     compass
-            anchors.leftMargin:     _spacing
-            anchors.left :          attitude.right
-            size:                   _innerRadius * 4
-            vehicle:                globals.activeVehicle
-            anchors.verticalCenter: parent.verticalCenter
-            visible:                false
-        }
-        */
+        
 
-        /*
-        NewGridR{
+
+        NewwGrid{
             id: new_grid
-            anchors.left: visualInstrument.left
+            vehicle: globals.activeVehicle
             anchors.top: visualInstrument.bottom
+            anchors.topMargin: _spacing
+            anchors.centerIn: visualInstrument.Center
         }
-        */
+
+        Speed_rectangle{
+            id: i_Am_speed
+            vehicle:        globals.activeVehicle
+            anchors.top:    parent.top
+            anchors.right:   new_grid.left
+            anchors.rightMargin: visualInstrument.width/4
+        }
+
+
+
+        Alttitude_and_speed_rectangles{
+            id: rectangle2
+            vehicle: globals.activeVehicle
+            
+            anchors.top:  visualInstrument.top
+            anchors.left:visualInstrument.right        
+        }
+
 
     }
-
-
-
-
-
-    Speed_rectangle{
-        id: rectangle
-        vehicle: globals.activeVehicle
-        Layout.leftMargin:  -336
-        Layout.topMargin:   -913
-    }
-
-
-
-    Alttitude_and_speed_rectangles{
-        id: rectangle2
-        vehicle: globals.activeVehicle
-        Layout.leftMargin:  230
-        Layout.topMargin:   -925
-    }
-
-
-
-    NewwGrid{
-        id: new_grid
-        vehicle: globals.activeVehicle
-        Layout.leftMargin:  -268
-        Layout.bottomMargin: -45
-
-    }
-
-
-
 
     TerrainProgress {
         Layout.fillWidth: true
