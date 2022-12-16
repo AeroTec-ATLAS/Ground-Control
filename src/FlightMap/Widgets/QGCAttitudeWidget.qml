@@ -37,12 +37,12 @@ Item {
     width:  size
     height: size
 
-    QGCPalette { id: qgcPal; colorGroupEnabled: enabled }
+
 
     Item {
         id:             instrument
         anchors.fill:   parent
-        visible:        false
+        //visible:        false
 
         //----------------------------------------------------
         //-- Artificial Horizon
@@ -50,6 +50,7 @@ Item {
             rollAngle:          _rollAngle
             pitchAngle:         _pitchAngle
             anchors.fill:       parent
+
 
 
 
@@ -125,6 +126,7 @@ Item {
         color:          Qt.rgba(0,0,0,0)
         border.color:   qgcPal.text
         border.width:   1
+        visible:        false
     }
 
     QGCLabel {
@@ -139,78 +141,55 @@ Item {
         property string _headingString2: _headingString.length === 1 ? "0" + _headingString : _headingString
         property string _headingString3: _headingString2.length === 2 ? "0" + _headingString2 : _headingString2
     }
-    Text {
-        text:  "ola" + _rollAngle
-        font.family: "Helvetica"
-        font.pointSize: 24
-        color: "black"
+
+    function getColor(){
+        var color = color
+        if(_rollAngle >= 10){
+            color = "yellow"
+        }
+        else{
+            color = "black"
+        }
+        return color
     }
-    Grid{
-        columns: 3
-        rows: 2
-        anchors.top: parent.bottom
-        Rectangle { color: "red"
-            width: 50
-            height: 50
-            Text {
-                text:  _rollAngle
-                font.family: "Helvetica"
-                font.pointSize: 12
-                color: "black"}
+
+
+    /*
+    Item {
+
+        property real _rollAngle:   vehicle ? vehicle.roll.rawValue : 0
+        property real _pitchAngle:  vehicle ? vehicle.pitch.rawValue : 0
+        property real _airspeed:    vehicle ? vehicle.airSpeed.rawValue : 0
+        property real _altitude:    vehicle ? vehicle.altitudeRelative.rawValue : 0
+        property real _throttlePct:    vehicle ? vehicle.throttlePct.rawValue : 0
+        property real _flightDistance:    vehicle ? vehicle.flightDistance.rawValue : 0
+        property real _altitudeAMSL:    vehicle ? vehicle.altitudeAMSL.rawValue : 0
+        property real _groundSpeed:    vehicle ? vehicle.groundSpeed.rawValue : 0
+        property real _yawRate:    vehicle ? vehicle.yawRate.rawValue : 0
+        id: rootgrid
+
+        Grid{
+
+            id:grid
+            columns: 3
+            rows: 3
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_airspeed);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_altitude);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_pitchAngle);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_rollAngle);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_rollAngle);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_flightDistance);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_altitudeAMSL);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_groundSpeed);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_yawRate);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
+
+            spacing: 5
+
+
+
         }
-
-        Rectangle { color: "green"
-            width: 50
-            height: 50
-            Text {
-                text:  _airspeed
-                font.family: "Helvetica"
-                font.pointSize: 12
-                color: "black"}
-        }
-
-        Rectangle { color: "yellow"
-            width: 50
-            height: 50
-            Text {
-                text:  _rollAngle
-                font.family: "Helvetica"
-                font.pointSize: 12
-                color: "black"}
-        }
-
-        Rectangle { color: "grey"
-            width: 50
-            height: 50
-            Text {
-                text:  _pitchAngle
-                font.family: "Helvetica"
-                font.pointSize: 12
-                color: "black"}
-        }
-
-        Rectangle { color: "orange"
-            width: 50
-            height: 50
-            Text {
-                text:  _airspeed
-                font.family: "Helvetica"
-                font.pointSize: 12
-                color: "black"}
-        }
-
-        Rectangle { color: "blue"
-            width: 50
-            height: 50
-            Text {
-                text:  _pitchAngle
-                font.family: "Helvetica"
-                font.pointSize: 12
-                color: "black"}
-        }
-
-
     }
+    */
+
 }
-
 

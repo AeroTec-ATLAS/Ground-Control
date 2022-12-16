@@ -1,3 +1,5 @@
+
+
 /****************************************************************************
  *
  * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
@@ -21,6 +23,8 @@ import QGroundControl.FlightDisplay 1.0
 import QGroundControl.Palette       1.0
 
 import QtQuick.Controls 1.2
+
+
 
 ColumnLayout {
     id:         root
@@ -147,69 +151,36 @@ ColumnLayout {
 
     }
 
-    Rectangle{
-        id:                 altitude_rectangle
-        height:             visualInstrument.height - 10
-        width:              height/4
-        // radius:             _outerRadius
-        color:              "black"
+
+
+
+
+    Speed_rectangle{
+        id: rectangle
+        vehicle: globals.activeVehicle
         Layout.leftMargin:  -336
-        Layout.topMargin:   -465
-        //anchors.top:     attitude.top
-        //anchors.right:  attitude.left
-
-        Text {
-            text: _airspeed
-            font.family: "Helvetica"
-            font.pointSize: 24
-            color: "white"
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-
+        Layout.topMargin:   -913
     }
 
 
-    Rectangle{
-        id:                 speed_rectangle
-        height:             altitude_rectangle.height
-        width:              height/4
-        Layout.leftMargin:  233
-        Layout.topMargin:   -475
-        // radius:             _outerRadius
-        color:              "black"
-        visible:            true
-        Text {
-            text: _altitude
-            font.family: "Helvetica"
-            font.pointSize: 24
-            color: "white"
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
 
+    Alttitude_and_speed_rectangles{
+        id: rectangle2
+        vehicle: globals.activeVehicle
+        Layout.leftMargin:  230
+        Layout.topMargin:   -925
+    }
+
+
+
+    NewwGrid{
+        id: new_grid
+        vehicle: globals.activeVehicle
+        Layout.leftMargin:  -268
+        Layout.bottomMargin: -45
 
     }
 
-    Grid{
-
-        id:grid
-        columns: 3
-        rows: 3
-        Rectangle{color:"black";width:180;height:80;Text{text: _airspeed;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _altitude;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _pitchAngle;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _rollAngle;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _rollAngle;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _flightDistance;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _altitudeAMSL;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _groundSpeed;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-        Rectangle{color:"black";width:180;height:80;Text{text: _yawRate;color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-
-        spacing: 5
-        Layout.leftMargin: -270
-
-    }
 
 
 
