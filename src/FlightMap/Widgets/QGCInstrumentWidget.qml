@@ -21,6 +21,7 @@ import QGroundControl.FactSystem    1.0
 import QGroundControl.FlightMap     1.0
 import QGroundControl.FlightDisplay 1.0
 import QGroundControl.Palette       1.0
+import QtQuick.Window               2.0
 
 import QtQuick.Controls 1.2
 
