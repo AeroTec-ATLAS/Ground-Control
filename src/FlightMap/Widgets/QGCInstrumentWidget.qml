@@ -139,7 +139,7 @@ ColumnLayout {
             anchors.centerIn: visualInstrument.Center
         }
 
-        Speed_rectangle{
+        Speed_Rectangle{
             id: i_Am_speed
             vehicle:        globals.activeVehicle
             anchors.top:    parent.top
@@ -152,9 +152,9 @@ ColumnLayout {
         Alttitude_and_speed_rectangles{
             id: rectangle2
             vehicle: globals.activeVehicle
-            
+
             anchors.top:  visualInstrument.top
-            anchors.left:visualInstrument.right        
+            anchors.left:visualInstrument.right
         }
 
 

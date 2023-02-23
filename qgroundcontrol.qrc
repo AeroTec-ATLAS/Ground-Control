@@ -75,7 +75,6 @@
         <file alias="PlanView.qml">src/PlanView/PlanView.qml</file>
         <file alias="PreFlightCheckList.qml">src/FlightDisplay/PreFlightCheckList.qml</file>
         <file alias="PX4FlowSensor.qml">src/VehicleSetup/PX4FlowSensor.qml</file>
-        
         <file alias="QGCInstrumentWidget.qml">src/FlightMap/Widgets/QGCInstrumentWidget.qml</file>
         <file alias="QGCInstrumentWidgetAlternate.qml">src/FlightMap/Widgets/QGCInstrumentWidgetAlternate.qml</file>
         <file alias="QGroundControl/Controls/AnalyzePage.qml">src/AnalyzeView/AnalyzePage.qml</file>
@@ -182,7 +181,7 @@
         <file alias="QGroundControl/Controls/TerrainStatus.qml">src/PlanView/TerrainStatus.qml</file>
         <file alias="QGroundControl/Controls/TakeoffItemMapVisual.qml">src/PlanView/TakeoffItemMapVisual.qml</file>
         <file alias="QGroundControl/Controls/ToolStrip.qml">src/QmlControls/ToolStrip.qml</file>
-       	<file alias="QGroundControl/Controls/ToolStripHoverButton.qml">src/QmlControls/ToolStripHoverButton.qml</file>
+        <file alias="QGroundControl/Controls/ToolStripHoverButton.qml">src/QmlControls/ToolStripHoverButton.qml</file>
         <file alias="QGroundControl/Controls/TransectStyleComplexItemEditor.qml">src/PlanView/TransectStyleComplexItemEditor.qml</file>
         <file alias="QGroundControl/Controls/TransectStyleComplexItemStats.qml">src/PlanView/TransectStyleComplexItemStats.qml</file>
         <file alias="QGroundControl/Controls/TransectStyleComplexItemTabBar.qml">src/PlanView/TransectStyleComplexItemTabBar.qml</file>
@@ -264,6 +263,9 @@
         <file alias="QGroundControl/FlightMap/QGCVideoBackground.qml">src/FlightMap/QGCVideoBackground.qml</file>
         <file alias="QGroundControl/FlightMap/qmldir">src/QmlControls/QGroundControl/FlightMap/qmldir</file>
         <file alias="QGroundControl/FlightMap/VehicleMapItem.qml">src/FlightMap/MapItems/VehicleMapItem.qml</file>
+        <file alias="NewwGrid.qml">src/FlightMap/NewwGrid.qml</file>
+        <file alias="Speed_Rectangle.qml">src/FlightMap/Speed_Rectangle.qml</file>
+        <file alias="Alttitude_and_speed_rectangles.qml">src/FlightMap/Alttitude_and_speed_rectangles.qml</file>
         <file alias="QGroundControl/ScreenTools/qmldir">src/QmlControls/QGroundControl/ScreenTools/qmldir</file>
         <file alias="QGroundControl/ScreenTools/ScreenTools.qml">src/QmlControls/ScreenTools.qml</file>
         <file alias="QmlTest.qml">src/QmlControls/QmlTest.qml</file>
@@ -283,6 +285,8 @@
         <file alias="VibrationPage.qml">src/AnalyzeView/VibrationPage.qml</file>
         <file alias="VirtualJoystick.qml">src/FlightDisplay/VirtualJoystick.qml</file>
         <file alias="VTOLLandingPatternEditor.qml">src/PlanView/VTOLLandingPatternEditor.qml</file>
+        <file alias="QGroundControl/Controls/MockLinkOptionsDlg.qml">src/comm/MockLinkOptionsDlg.qml</file>
+        <file alias="BARRAANALOGICA.qml">src/FlightMap/BARRAANALOGICA.qml</file>
     </qresource>
     <qresource prefix="/FirstRunPromptDialogs">
         <file alias="UnitsFirstRunPrompt.qml">src/FirstRunPromptDialogs/UnitsFirstRunPrompt.qml</file>
@@ -351,8 +355,5 @@
         <file alias="Parameter.MetaData.json.xz">src/comm/MockLink.Parameter.MetaData.json.xz</file>
         <file alias="Parameter.MetaData.json">src/comm/MockLink.Parameter.MetaData.json</file>
         <file alias="Arduplane.params.ftp.bin">src/comm/Mocklink.Arduplane.params.ftp.bin</file>
-    </qresource>
-    <qresource prefix="/qml">
-        <file alias="QGroundControl/Controls/MockLinkOptionsDlg.qml">src/comm/MockLinkOptionsDlg.qml</file>
     </qresource>
 </RCC>

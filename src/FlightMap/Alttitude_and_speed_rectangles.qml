@@ -21,20 +21,28 @@ Item {
     id:root
 
 
+    BARRAANALOGICA{
+
+        size:visualInstrument.height
+        altitude:_altitude
+    }
+
 
     Rectangle{
         id:                 altitude_rectangle
         height:             visualInstrument.height
         width:              height/4
-        color:              "black"
+        color:              "transparent"
         radius:             width/4
+
         Text {
             text: Math.round(_altitude)+ " m"
             font.family: "Helvetica"
-            font.pointSize: parent.width/5
+            font.pointSize: parent.width/7
             color: "white"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: -parent.width/8
         }
 
     }

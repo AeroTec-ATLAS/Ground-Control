@@ -26,7 +26,7 @@ Item {
     id: rootgrid
 
 
-    property real comprimento: visualInstrument.width/3R
+    property real comprimento: visualInstrument.width/3
     property real altura: comprimento/3
 
     SoundEffect {

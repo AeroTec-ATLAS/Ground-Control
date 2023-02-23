@@ -154,42 +154,6 @@ Item {
     }
 
 
-    /*
-    Item {
-
-        property real _rollAngle:   vehicle ? vehicle.roll.rawValue : 0
-        property real _pitchAngle:  vehicle ? vehicle.pitch.rawValue : 0
-        property real _airspeed:    vehicle ? vehicle.airSpeed.rawValue : 0
-        property real _altitude:    vehicle ? vehicle.altitudeRelative.rawValue : 0
-        property real _throttlePct:    vehicle ? vehicle.throttlePct.rawValue : 0
-        property real _flightDistance:    vehicle ? vehicle.flightDistance.rawValue : 0
-        property real _altitudeAMSL:    vehicle ? vehicle.altitudeAMSL.rawValue : 0
-        property real _groundSpeed:    vehicle ? vehicle.groundSpeed.rawValue : 0
-        property real _yawRate:    vehicle ? vehicle.yawRate.rawValue : 0
-        id: rootgrid
-
-        Grid{
-
-            id:grid
-            columns: 3
-            rows: 3
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_airspeed);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_altitude);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_pitchAngle);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_rollAngle);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_rollAngle);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_flightDistance);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_altitudeAMSL);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_groundSpeed);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-            Rectangle{color:"black";width:180;height:80;Text{text: Math.round(_yawRate);color:"white";font.pointSize: 24;anchors.horizontalCenter: parent.horizontalCenter;anchors.verticalCenter: parent.verticalCenter}}
-
-            spacing: 5
-
-
-
-        }
-    }
-    */
 
 }
 

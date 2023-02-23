@@ -106,7 +106,7 @@ Item {
 
     SoundEffect {
          id: playSound
-         source: "file:///home/renato/Desktop/ATLAS/Ground-Control/resources/audio/FSL_A320X_SPEED.wav"
+         source: "resources/audio/FSL_A320X_SPEED.wav"
 
      }
 
