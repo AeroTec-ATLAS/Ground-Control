@@ -20,7 +20,9 @@ Item {
     Item{
         id: barraanalogica
         anchors.fill:parent
+        visible:false
         Column{
+
             Repeater{
                 model:15
                 Image{
@@ -38,6 +40,7 @@ Item {
         id:mascara
         anchors.fill:barraanalogica
         color:"black"
+        visible:true
         radius:width/4
     }
 
