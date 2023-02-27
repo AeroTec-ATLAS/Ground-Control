@@ -21,13 +21,17 @@ Item {
     id: speed_rectangle
 
 
+    BARRA_VELOCIDADE{
+        size:visualInstrument.height
+        airspeed:_speed
+    }
 
 
-       Rectangle{
+    Rectangle{
         id:                 speed_rectanglee
         height:             visualInstrument.height
         width:              height/4
-        color:              "black"
+        color:              "transparent"
         radius:             width/4
         Text {
             text: Math.round(_speed) + " m/s"
@@ -36,6 +40,7 @@ Item {
             color: "white"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset:-parent.width/7
         }
 
     }

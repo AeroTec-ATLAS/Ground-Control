@@ -22,7 +22,6 @@ Item {
 
 
     BARRAANALOGICA{
-
         size:visualInstrument.height
         altitude:_altitude
     }
