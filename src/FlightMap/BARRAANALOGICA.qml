@@ -12,6 +12,8 @@ Item {
     property real size
     property real factor: 649/6480
 
+    property int aux: Math.round(altitude)
+    property int barrasdim: (aux-aux%10)/10+3
 
     id: papychulo
     height:size
@@ -24,7 +26,7 @@ Item {
         Column{
 
             Repeater{
-                model:15
+                model:barrasdim
                 Image{
                     id:imagem
                     width:papychulo.width
