@@ -68,7 +68,7 @@ Item {
         Rectangle {
             width: 200
             height: 200
-
+            visible: false
 
             property string myString: "Hello,\nWorld!\nThis is a\nmultiline string."
 
