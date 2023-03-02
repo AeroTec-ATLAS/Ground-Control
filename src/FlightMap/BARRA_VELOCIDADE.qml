@@ -6,7 +6,6 @@ import QGroundControl.Controls      1.0
 import QGroundControl.ScreenTools   1.0
 import QGroundControl.Palette       1.0
 
-
 Item {
     property real airspeed
     property real size
@@ -18,6 +17,9 @@ Item {
     id:     papychulo
     height: size
     width:  height/4
+
+
+
 
     Item{
         id: barraspeed
