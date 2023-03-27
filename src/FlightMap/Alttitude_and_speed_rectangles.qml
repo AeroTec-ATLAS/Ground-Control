@@ -17,19 +17,20 @@ Item {
 
     property real _altitude:    vehicle ? vehicle.altitudeRelative.rawValue : 0
 
-
+    height:size
+    width:height/4
     id:root
 
 
     BARRAANALOGICA{
-        size:visualInstrument.height
+        size:parent.size
         altitude:_altitude
     }
 
 
     Rectangle{
         id:                 altitude_rectangle
-        height:             visualInstrument.height
+        height:             parent.size
         width:              height/4
         color:              "transparent"
         radius:             width/4
