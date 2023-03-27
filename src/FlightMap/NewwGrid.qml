@@ -31,15 +31,9 @@ Item {
     property real _groundSpeed:    vehicle ? vehicle.groundSpeed.rawValue : 0
     property real _heading:    vehicle ? vehicle.heading.rawValue : 0    
     property string _vehicle_type:   vehicle ? vehicle.vehicleTypeString : "habibi"
-
     // property var file: File.open("file:///home/renato/Desktop/ATLAS/Ground-Control/reader.txt", File.ReadOnly);
 
-
-
-
-
     id: rootgrid
-
 
     property real comprimento: visualInstrument.width/3
     property real altura: comprimento/3
@@ -49,7 +43,6 @@ Item {
     property int start : 0
     
     Item {
-
 
         function readFile(fileName) {
                 var file = new XMLHttpRequest();
@@ -62,18 +55,12 @@ Item {
                 readFile("file:///home/renato/Desktop/ATLAS/Ground-Control/reader.txt");
             }
 
-
-
-
         Rectangle {
             width: 200
             height: 200
             visible: false
 
-            property string myString: "Hello,\nWorld!\nThis is a\nmultiline string."
-
             Component.onCompleted: {
-
 
                 var line
                 for (var i = 0; i < fileContents.length; i++) {
@@ -97,17 +84,11 @@ Item {
 
         }
 
-
-
     }
-
-
-
 
     SoundEffect {
          id: playSound
          source: "resources/audio/FSL_A320X_SPEED.wav"
-
      }
 
     Timer{
@@ -116,7 +97,6 @@ Item {
         interval: 4000
         repeat: true
         running: true
-        
 
     }
 
