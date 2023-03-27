@@ -17,19 +17,20 @@ Item {
 
     property real _speed:    vehicle ? vehicle.airSpeed.rawValue : 0
 
-
+    height:size
+    width:height/4
     id: speed_rectangle
 
 
     BARRA_VELOCIDADE{
-        size:visualInstrument.height
+        size:parent.height
         airspeed:_speed
     }
 
 
     Rectangle{
         id:                 speed_rectanglee
-        height:             visualInstrument.height
+        height:             parent.height
         width:              height/4
         color:              "transparent"
         radius:             width/4
