@@ -35,7 +35,7 @@ Item {
 
     id: rootgrid
 
-    property real comprimento: visualInstrument.width/3
+    property real comprimento:size/3
     property real altura: comprimento/3
     property int flag: 0
     property string fileContents: ""
