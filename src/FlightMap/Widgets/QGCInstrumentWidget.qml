@@ -25,7 +25,6 @@ import QtQuick.Window               2.0
 
 import QtQuick.Controls 1.2
 
-
 ColumnLayout {
     id:         root
     spacing:    ScreenTools.defaultFontPixelHeight /4
@@ -67,7 +66,7 @@ ColumnLayout {
         property real   maximumWidth: _outerRadius*22*Screen.devicePixelRatio
         property real   minimumWidth: _outerRadius*4*Screen.devicePixelRatio
 
-       
+
         ////Funções para arrastar -MB
         MouseArea {
             property double factor: 25
@@ -77,11 +76,6 @@ ColumnLayout {
             drag.target:        parent
             drag.axis:          Drag.XAndYAxis
 
-            //Scuffed limites não aplicados de momento pois as funçoes de limites de ecrã não são boas
-            //drag.minimumX:      -Screen.width
-            //drag.minimumY:      0
-            //drag.maximumX:      0
-            //drag.maximumY:      +Screen.height
 
             drag.filterChildren: true
 
@@ -128,7 +122,7 @@ ColumnLayout {
             vehicle:                globals.activeVehicle
             anchors.verticalCenter: parent.verticalCenter
         }
-        
+
 
 
         NewwGrid{
@@ -137,6 +131,7 @@ ColumnLayout {
             anchors.top: visualInstrument.bottom
             anchors.topMargin: _spacing
             anchors.centerIn: visualInstrument.Center
+            size:visualInstrument.width
         }
 
         Speed_Rectangle{
@@ -144,7 +139,8 @@ ColumnLayout {
             vehicle:        globals.activeVehicle
             anchors.top:    parent.top
             anchors.right:   new_grid.left
-            anchors.rightMargin: visualInstrument.width/4
+
+            size:visualInstrument.width
         }
 
 
@@ -155,6 +151,7 @@ ColumnLayout {
 
             anchors.top:  visualInstrument.top
             anchors.left:visualInstrument.right
+            size:visualInstrument.width
         }
 
 
