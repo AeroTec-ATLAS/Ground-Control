@@ -1,50 +1,95 @@
-/****************************************************************************
- *
- * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
- *
- * QGroundControl is licensed according to the terms in the file
- * COPYING.md in the root of the source code directory.
- *
- ****************************************************************************/
 
-import QtQuick 2.3
+import QtQuick          2.3
+import QtQuick.Layouts  1.12
+import QtQuick.Controls 2.12
+import QtGraphicalEffects   1.0
 
 import QGroundControl               1.0
 import QGroundControl.Controls      1.0
 import QGroundControl.ScreenTools   1.0
 import QGroundControl.FactSystem    1.0
 import QGroundControl.FlightMap     1.0
+import QGroundControl.FlightDisplay 1.0
 import QGroundControl.Palette       1.0
+import QtQuick.Window               2.2
 
-Rectangle {
-    height: _outerRadius * 4
-    radius: _outerRadius
-    color:  QGroundControl.globalPalette.window
+import QtQuick.Controls 1.2
 
-    property real _outerMargin: (width * 0.05) / 2
-    property real _outerRadius: width / 2
-    property real _innerRadius: _outerRadius - _outerMargin
 
-    // Prevent all clicks from going through to lower layers
-    DeadMouseArea {
-        anchors.fill: parent
+Column{
+    property bool showPitch:    true
+    property var  vehicle:      null
+    property real size
+    property bool showHeading:  false
+
+
+    property real   _outerRadius:           Screen.width/30
+    property real   _spacing:               ScreenTools.defaultFontPixelHeight * 0.33
+
+    Row{
+        id:     root
+        spacing:_spacing
+        transform:Translate{
+            x:-_outerRadius*8-4*_spacing
+        }
+
+        Speed_Rectangle{
+            id: i_Am_speed
+            vehicle: globals.activeVehicle
+            size: _outerRadius*8
+
+
+            DeadMouseArea{
+                anchors.fill:parent
+            }
+        }
+
+        Rectangle {
+            id:visualInstrument
+            height: _outerRadius*8
+            width:height
+            color:'transparent'
+
+            DeadMouseArea{
+                anchors.fill:parent
+            }
+
+            QGCAttitudeWidget {
+                id:                     attitude
+                anchors.horizontalCenter:   parent.horizontalCenter
+                anchors.topMargin:          _spacing
+                anchors.top:                parent.top
+                anchors.left:               parent.left
+                size:                   visualInstrument.height
+                vehicle:                globals.activeVehicle
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        Alttitude_and_speed_rectangles{
+            id: rectangle2
+            vehicle: globals.activeVehicle
+            size: _outerRadius*8
+            DeadMouseArea{
+                anchors.fill:parent
+            }
+        }
+
+        TerrainProgress {
+            Layout.fillWidth: true
+        }
     }
 
-    QGCAttitudeWidget {
-        id:                         attitude
-        anchors.horizontalCenter:   parent.horizontalCenter
-        anchors.topMargin:          _outerMargin
-        anchors.top:                parent.top
-        size:                       _innerRadius * 2
-        vehicle:                    globals.activeVehicle
-    }
+    NewwGrid{
+        id: new_grid
+        vehicle: globals.activeVehicle
+        size:_outerRadius*8
+        transform: Translate{
+            x:-_outerRadius*6-3*_spacing
+        }
 
-    QGCCompassWidget {
-        id:                         compass
-        anchors.horizontalCenter:   parent.horizontalCenter
-        anchors.topMargin:          _outerMargin * 2
-        anchors.top:                attitude.bottom
-        size:                       _innerRadius * 2
-        vehicle:                    globals.activeVehicle
+        DeadMouseArea{
+            anchors.fill:parent
+        }
     }
 }
