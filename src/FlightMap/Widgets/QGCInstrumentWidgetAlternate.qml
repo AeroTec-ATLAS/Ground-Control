@@ -26,6 +26,8 @@ Column{
     property real   _outerRadius:           Screen.width/30
     property real   _spacing:               ScreenTools.defaultFontPixelHeight * 0.33
 
+    spacing:_spacing
+
     Row{
         id:     root
         spacing:_spacing
@@ -75,9 +77,7 @@ Column{
             }
         }
 
-        TerrainProgress {
-            Layout.fillWidth: true
-        }
+
     }
 
     NewwGrid{
@@ -86,10 +86,15 @@ Column{
         size:_outerRadius*8
         transform: Translate{
             x:-_outerRadius*6-3*_spacing
+            y:_outerRadius*8+_spacing
         }
 
         DeadMouseArea{
             anchors.fill:parent
         }
+    }
+
+    TerrainProgress {
+        Layout.fillWidth: true
     }
 }

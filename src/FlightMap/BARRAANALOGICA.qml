@@ -4,7 +4,7 @@ import QGroundControl               1.0
 import QGroundControl.Controls      1.0
 import QGroundControl.ScreenTools   1.0
 import QGroundControl.Palette       1.0
-
+import QtQuick.Layouts 1.3
 Item {
     property real altitude
     property real size
@@ -20,16 +20,21 @@ Item {
         id: barraanalogica
         anchors.fill:parent
         visible:false
-        Column{
+        ColumnLayout{
+
             Repeater{
-                model:barrasdim
+                model:5
+                Layout.alignment: Qt.AlignTop
                 Image{
-                    id:imagem
-                    width:papychulo.width
+                    Layout.preferredHeight: papychulo.height/3
                     height:papychulo.height/3
+                    Layout.fillWidth: true
                     source:"/qmlimages/BARRA_2.svg"
                     mipmap:true
-                    transform:Translate{y:- altitude*height*factor + 1.5*height}
+                    transform: Translate{
+                        x:papychulo.width/4
+                        y:-(-altitude*factor*height+1.5*height)
+                    }
                 }
 
             }
