@@ -13,7 +13,7 @@ Item {
     property real airspeed
     property real size
     property real factor: 649/6480
-
+    property real v_max
     property int aux: Math.round(airspeed)
     property int barrasdim: Math.round(aux/10+3)
     property int index_aux:0
@@ -38,12 +38,14 @@ Item {
                 Image{
                     height:papychulo.height/3
                     width:papychulo.width
-                    source:"/qmlimages/BARRA_2.svg"
+                    source:airspeed>=(v_max-5)? (airspeed>=v_max? "/qmlimages/BARRA_VERMELHO.svg":"/qmlimages/BARRA_AVISO.svg"):"/qmlimages/BARRA_2.svg"
                     mipmap:true
                     transform: Translate{
                         y:-(-airspeed*factor*height+(barrasdim-1.5)*height)
                     }
                 }
+
+
             }
         }
 
@@ -52,7 +54,7 @@ Item {
     Rectangle{
         id:mascara
         anchors.fill:barraspeed
-        color:"black"
+        color:airspeed>=(v_max-5)? (airspeed>=v_max?"red":"yellow"):"black"
         visible:true
         radius:width/4
     }

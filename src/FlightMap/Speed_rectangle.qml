@@ -16,7 +16,7 @@ Item {
 
 
     property real _speed:    vehicle ? vehicle.airSpeed.rawValue : 0
-
+    property real vel_max:18
     height:size
     width:height/4
     id: speed_rectangle
@@ -25,6 +25,7 @@ Item {
     BARRA_VELOCIDADE{
         size:parent.height
         airspeed:_speed
+        v_max:vel_max
     }
 
 
@@ -38,7 +39,7 @@ Item {
             text: Math.round(_speed) + " m/s"
             font.family: "Helvetica"
             font.pointSize: parent.width/7
-            color: "white"
+            color: _speed>=vel_max-5? (_speed>=vel_max?"black":"black"):"white"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset:-parent.width/7
