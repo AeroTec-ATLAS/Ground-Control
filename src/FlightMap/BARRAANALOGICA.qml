@@ -20,23 +20,20 @@ Item {
         id: barraanalogica
         anchors.fill:parent
         visible:false
-        ColumnLayout{
 
+        Column{
             Repeater{
-                model:5
-                Layout.alignment: Qt.AlignTop
+                model:barrasdim
+
                 Image{
-                    Layout.preferredHeight: papychulo.height/3
                     height:papychulo.height/3
-                    Layout.fillWidth: true
+                    width:papychulo.width
                     source:"/qmlimages/BARRA_2.svg"
                     mipmap:true
                     transform: Translate{
-                        x:papychulo.width/4
-                        y:-(-altitude*factor*height+1.5*height)
+                        y:-(-altitude*factor*height+(barrasdim-1.5)*height)
                     }
                 }
-
             }
         }
     }

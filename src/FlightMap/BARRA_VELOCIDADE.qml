@@ -6,6 +6,9 @@ import QGroundControl.Controls      1.0
 import QGroundControl.ScreenTools   1.0
 import QGroundControl.Palette       1.0
 import QtQuick.Layouts 1.3
+
+
+
 Item {
     property real airspeed
     property real size
@@ -13,11 +16,12 @@ Item {
 
     property int aux: Math.round(airspeed)
     property int barrasdim: Math.round(aux/10+3)
-    property int index:0
+    property int index_aux:0
+
+
     id:     papychulo
     height: size
     width:  height/4
-
 
 
 
@@ -26,25 +30,23 @@ Item {
         anchors.fill:parent
         visible:false
 
-        ColumnLayout{
 
+        Column{
             Repeater{
                 model:barrasdim
-                Layout.alignment: Qt.AlignBottom
+
                 Image{
-                    Layout.preferredHeight: papychulo.height/3
                     height:papychulo.height/3
-                    Layout.fillWidth: true
+                    width:papychulo.width
                     source:"/qmlimages/BARRA_2.svg"
                     mipmap:true
                     transform: Translate{
-                        x:papychulo.width/4
-                        y:-(-airspeed*factor*height+1.5*height)
+                        y:-(-airspeed*factor*height+(barrasdim-1.5)*height)
                     }
                 }
-
             }
         }
+
     }
 
     Rectangle{
