@@ -22,12 +22,18 @@ Item {
     id: speed_rectangle
 
 
-    BARRA_VELOCIDADE{
+    /*BARRA_VELOCIDADE{
+        size:parent.height
+        airspeed:_speed
+        v_max:vel_max
+    }*/
+
+    Barra_overspeed{
+        id: aviso
         size:parent.height
         airspeed:_speed
         v_max:vel_max
     }
-
 
     Rectangle{
         id:                 speed_rectanglee
@@ -46,6 +52,7 @@ Item {
         }
 
     }
+
 
     //Eu sou veloz -Faísca McQueen
 

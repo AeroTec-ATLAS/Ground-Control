@@ -7,9 +7,7 @@ import QGroundControl.ScreenTools   1.0
 import QGroundControl.Palette       1.0
 import QtQuick.Layouts 1.3
 
-
-
-Item {
+Item{
     property real airspeed
     property real size
     property real factor: 649/6480
@@ -24,9 +22,8 @@ Item {
     width:  height/4
 
 
-
     Item{
-        id: barraspeed
+        id: overspeed
         anchors.fill:parent
         visible:false
 
@@ -36,12 +33,14 @@ Item {
                 model:barrasdim
 
                 Image{
-                    height:papychulo.height/3
-                    width:papychulo.width
-                    source:airspeed>=(v_max-5)? (airspeed>=v_max? "/qmlimages/BARRA_VERMELHO.svg":"/qmlimages/BARRA_AVISO.svg"):"/qmlimages/BARRA_2.svg"
+                    id:images
+                    height:papychulo.height/12
+                    width:papychulo.width/4
+                    source:"/qmlimages/resources/Barra-overspeed.svg"
                     mipmap:true
                     transform: Translate{
-                        y:-(-airspeed*factor*height+(barrasdim-1.5)*height)
+                        y:-(-airspeed*factor*height+(barrasdim-1.5)*height+v_max*height)
+                        x:papychulo.width*3/4
                     }
                 }
 
@@ -52,22 +51,18 @@ Item {
     }
 
     Rectangle{
-        id:mascara
-        anchors.fill:barraspeed
-        color:airspeed>=(v_max-5)? (airspeed>=v_max?"red":"yellow"):"black"
+        id:mascara2
+        anchors.fill:overspeed
+        color:"#00000000"
         visible:true
         radius:width/4
     }
 
     OpacityMask {
         cached:true
-        anchors.fill:barraspeed
-        source:  barraspeed
-        maskSource: mascara
+        anchors.fill:overspeed
+        source:  overspeed
+        maskSource: mascara2
     }
-
-
-
-
 
 }

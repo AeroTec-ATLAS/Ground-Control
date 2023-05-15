@@ -52,7 +52,7 @@ Item {
             }
 
         Component.onCompleted: {
-                readFile("file:///home/renato/Desktop/ATLAS/Ground-Control/reader.txt");
+                readFile("file:/D:/ATLAS/repos/Ground-Control/reader.txt");
             }
 
         Rectangle {

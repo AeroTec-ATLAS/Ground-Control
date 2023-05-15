@@ -199,5 +199,6 @@
         <file alias="BARRA_2.svg">resources/BARRA_2.svg</file>
         <file alias="BARRA_AVISO.svg">resources/BARRA_AVISO.svg</file>
         <file alias="BARRA_VERMELHO.svg">resources/BARRA_VERMELHO.svg</file>
+        <file>resources/Barra-overspeed.svg</file>
     </qresource>
 </RCC>

@@ -288,6 +288,7 @@
         <file alias="QGroundControl/Controls/MockLinkOptionsDlg.qml">src/comm/MockLinkOptionsDlg.qml</file>
         <file alias="BARRAANALOGICA.qml">src/FlightMap/BARRAANALOGICA.qml</file>
         <file alias="BARRA_VELOCIDADE.qml">src/FlightMap/BARRA_VELOCIDADE.qml</file>
+        <file>Barra_overspeed.qml</file>
     </qresource>
     <qresource prefix="/FirstRunPromptDialogs">
         <file alias="UnitsFirstRunPrompt.qml">src/FirstRunPromptDialogs/UnitsFirstRunPrompt.qml</file>
